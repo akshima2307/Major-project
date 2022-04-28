@@ -1,0 +1,406 @@
+:root{
+  --primary-color: #B33030;
+  --primary-light: #ce3838;
+}
+a{
+  color: #333;
+}
+body {
+  margin: 0;
+  padding: 0;
+  color: #333;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Header */
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 3rem;
+  margin: 1rem 0;
+}
+.header .header_div .header_logo{
+  width: 60px;
+}
+.header .header_div .user_img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.header .header_div span{
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--primary-color);
+}
+.header .header_div .btn .login-btn{
+  background-color: white;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  font-size: 1rem;
+  padding: 0.4rem 1rem;
+  border-radius: 5px;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+.header .header_div .btn .signup-btn{
+  background-color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  color: white;
+  font-size: 1rem;
+  padding: 0.4rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Nav Bar */
+.navbar{
+  display: flex;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1.3rem 0 1.3rem 1rem;
+  box-shadow: 0 5px 10px rgba(51, 51, 51,0.3);
+}
+.navbar > .nav{
+  color: white;
+  margin-right: 1rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+.navbar .nav-active{
+  background-color: var(--primary-light);
+}
+
+
+/* Home Page - Posts */
+.posts_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem 3rem;
+}
+.posts_container .post{
+  width: 20%;
+  margin: 0 1rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 10px 20px rgba(51, 51, 51,0.2);
+  border-radius: 10px;
+}
+.posts_container .post .post-img{
+  width: 100%;
+  height: 15rem;
+}
+.posts_container .post .post-img > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+.posts_container .post .post-heading{
+  display: block;
+  text-align: center;
+  padding-top: 0.5rem;
+  font-size: 1.2rem;
+}
+.posts_container .post .post-info{
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+.posts_container .post .post-info > img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 0.7rem;
+}
+.posts_container .post .post-info-likesView{
+  display: flex;
+  padding-bottom: 1rem;
+}
+.posts_container .post .post-info-likesView small{
+  width: 50%;
+  text-align: center;
+}
+
+/* Post screen */
+.art-container{
+  padding: 3rem;
+}
+.art-container .art{
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  margin: 2rem 0;
+  border: 1px solid rgb(158, 158, 158);
+  border-radius: 10px;
+} 
+.art-container .art .art-img{
+  width: 100%;
+  height: 20rem;
+  margin-right: 4rem;
+}
+.art-container .art .art-img > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.art-container .art .art-info h3{
+  font-weight: bold;
+}
+.art-container .art .art-info > span{
+  display: block;
+  margin-bottom: 0.7rem;
+}
+.art-container .art .art-info .artist-info{
+  display: flex;
+  align-items: center;
+}
+.art-container .art .art-info .artist-info > img{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+.art-container .art .art-info .art-details{margin-top: 2rem;}
+.art-container .art .art-info .art-details > button{ 
+  padding: 0.7rem 2.4rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.art-container .art .art-info .art-details > button:first-child{
+  margin-right: 1rem;
+}
+.art-container .comment-info{
+  padding: 1rem;
+  padding-left: 0;
+  display: flex;
+  justify-content: space-between;
+}
+.art-container .comment-info .comment-list{
+  width: 45%;
+  padding: 0;
+}
+.art-container .comment-info .comment-list .comment{
+  display: flex;
+  padding: 0.6rem;
+  background-color: rgb(240, 237, 237);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+
+}
+.art-container .comment-info .comment-list .comment p{
+  margin: 0;
+}
+
+.art-container .comment-info .comment-list .comment > img{
+  width: 60px;
+  height: 50px;
+  border-radius: 5px;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+.art-container .comment-info > form{
+  padding: 1rem;
+}
+.art-container .comment-info > form input{
+  display: block;
+  background-color: white;
+  border: 1px solid #333;
+  width: 20rem;
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin: 1rem 0;
+}
+.art-container .comment-info > form button{
+  display: block;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 1.1rem;
+  padding: 0.5rem 1.5rem ;
+  border: none;
+  border-radius: 5px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* About Page */
+
+.about{
+  position: relative;
+  text-align: center;
+}
+.about_bg{
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 25rem;
+  background-color: var(--primary-light);
+  z-index: -10;
+}
+.about_heading-primary{
+  width: 60%;
+  margin: auto;
+  font-family: 'Means Web,Georgia,Times,Times New Roman,serif';
+  padding-top: 5rem;
+  font-size: 4rem;
+  font-weight: 400;
+  color: white;
+}
+.about_heading-primary:last-of-type{
+  color: #000;
+  border-bottom: 5px solid #000;
+  width: max-content;
+}
+.about_heading-secondary{
+  width: 60%;
+  margin: auto;
+  font-family: 'Means Web,Georgia,Times,Times New Roman,serif';
+  padding-top: 3rem;
+  font-size: 3.5rem;
+  font-weight: 400;
+  color: #000;
+  text-align: left;
+}
+.about_img-1{
+  padding-top: 3rem;
+  width: 45rem;
+  height: 30rem;
+  object-fit: cover;
+}
+.about_img-2{
+  padding-top: 3rem;
+  width: 60rem;
+  height: 30rem;
+  object-fit: cover;
+}
+.about_content{
+  width: 60%;
+  text-align: justify;
+  margin: 3rem auto;
+}
+.about_content > p{
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+  line-height: 27px;
+}
+
+.about_team{
+  margin: 5rem auto;
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.about_member{
+  width: 25%;
+  margin-bottom: 3rem;
+}
+.about_member:not(:last-child){margin-right: 3rem;}
+.about_member > img{
+  width: 100%;
+  height: 18rem;
+  object-fit: cover;
+}
+.about_member > span{
+  display: block;
+  font-size: 1.5rem;
+  margin-top: 0.7rem;
+  margin-bottom: 0.3rem;
+}
+.about_member > small{
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.about_member > p{
+  font-size: 1.3rem;
+}
+
+/* Contact Page */
+.contact_container{
+  height: max-content;
+  width: 100%;
+  display: flex;
+}
+.contact_container > img{
+  width: 50%;
+  height: 100vh;
+  object-fit: cover;
+}
+.contact_form{
+  width: 55%;
+  padding: 2rem 0 2rem 4rem;
+}
+.contact_form > h1{
+  margin: 0;
+  margin-bottom: 4rem;
+  color: var(--primary-color);
+  font-family: 'Means Web,Georgia,Times,Times New Roman,serif';
+  font-size: 4rem;
+  font-weight: 400;
+}
+.contact_form > .form_group{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+.contact_form > .form_group > span{
+  font-size: 1.3rem;
+}
+.contact_form > .form_group > input{
+  width: 60%;
+  font-size: 1.1rem;
+  background-color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: 0 5px 10px rgba(51, 51, 51,0.2);
+  margin-right: 2rem;
+}
+.contact_form > .form_group > textarea{
+  font-family: inherit;
+  width: 60%;
+  font-size: 1.1rem;
+  background-color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  margin-right: 2rem;
+  box-shadow: 0 5px 10px rgba(51, 51, 51,0.2);
+}
+.contact_form > .form_group > input:focus{border-bottom: 2px solid var(--primary-color);}
+.contact_form > .form_group > textarea:focus{border-bottom: 2px solid var(--primary-color);}
+.contact_form > button{
+  background-color: var(--primary-color);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 1rem 3rem;
+  color: white;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+} 
+.contact_form > button:hover{opacity: 0.9;}
