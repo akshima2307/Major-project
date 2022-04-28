@@ -1,10 +1,16 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import posts from '../posts';
+import axios from 'axios';
 
 const PostScreen = ({match}) => {
-    const post = posts.find(p => p._id === match.params.id);
-    console.log(post);
+    const [post,setPost] = useState({})
+    useEffect(() => {
+        const fetchPost = async () => {
+            const {data} = await axios.get(`/api/posts/${match.params.id}`)
+            setPost(data) 
+        }
+        fetchPost()
+    }, [match])
     return(
         <div className='art-container'>
             <Link to="/home" class="back_icon"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp; Go Back</Link>

@@ -9,8 +9,8 @@ const Post = ({post}) => {
             </div>
             <Link to={`/post/${post._id}`} className="post-heading">{post.title}</Link>
             <div class="post-info">
-                <img src={post.artistImg} alt={post.artistName} />
-                <span>{post.artistName}</span>
+                <img src={post.artist.artistImg} alt={post.artist.artistName} />
+                <span>{post.artist.artistName}</span>
             </div>      
             <div class="post-info-likesView">
                 <small><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;{post.likes}</small>
