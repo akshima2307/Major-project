@@ -404,3 +404,54 @@ code {
   border-radius: 5px;
 } 
 .contact_form > button:hover{opacity: 0.9;}
+
+/* Like Page */
+.like-heading{
+  display: block;
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  color: var(--primary-color);
+}
+
+.like-card{
+  margin: 1rem 3rem;
+  border: 1px solid rgb(191, 191, 191);
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+.like-card img{ 
+  width: 20rem;
+  height: 10rem;
+  object-fit: cover;
+}
+.like-card > .like-content{
+  padding-left: 2rem;
+}
+.like-card > .like-content > a{
+  color: var(--primary-color);
+}
+.like-card > .like-content > p{
+  width: 90%;
+  text-align: justify;
+}
+.like-card > .like-content > button{
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  margin-right: 1rem;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+}
+.like-card .remove-btn{
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  margin-right: 1rem;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+}

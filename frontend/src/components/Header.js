@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 const Header = () => {
     return(
@@ -12,8 +14,8 @@ const Header = () => {
             <div class="header_div">
                 {/* <a><img className='user_img' src="../images/user_1.jpg" alt="user" /></a> */}
                 <div className='btn'>
-                    <button className='login-btn'>Log-In</button>
-                    <button className='signup-btn'>Sign-Up</button>
+                    <Link to={'/login'} className='login-btn'>Log-In</Link>
+                    <Link to={'/signup'} className='signup-btn'>Sign-Up</Link>
                 </div>
             </div>
         </div>

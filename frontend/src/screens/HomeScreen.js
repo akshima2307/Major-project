@@ -1,27 +1,36 @@
-import React,{useState,useEffect} from 'react';
+import React,{useEffect} from 'react';
 import Post from '../components/Post';
-import axios from 'axios';
+import {useDispatch, useSelector} from 'react-redux'
+import { listPosts } from '../actions/postAction'
 
 const HomeScreen = () => {
-    const [posts,setPosts] = useState([])
+
+    const dispatch = useDispatch()
+    const postList = useSelector(state => state.postList)
+    const {loading,error,posts} = postList
 
     useEffect(() => {
-        const fetchPosts = async () => {
-            const {data} = await axios.get('/api/posts')
-            setPosts(data) 
-        }
-        fetchPosts()
-    }, [])
-
+        dispatch(listPosts())
+    }, [dispatch])
 
     return(
         <>
-            <h2 style={{textAlign: 'center', fontWeight: 500,color:"var(--primary-color)", textTransform:"uppercase"}}>Latest Posts</h2>
-            <div className='posts_container'>
-                {posts.map((post) => (
-                    <Post post={post} key={post._id} />
-                ))}
-            </div>
+            <h2 style={{textAlign: 'center', fontWeight: 500,color:"var(--primary-color)", textTransform:"uppercase", marginTop: '2rem'}}>Latest Posts</h2>
+            {loading ? <span style={{
+                display: 'block',
+                textAlign: 'center',
+                marginTop: '6rem'
+            }}>Loading...</span> : error ? <span style={{
+                display: 'block',
+                textAlign: 'center',
+                marginTop: '6rem'
+            }}>{error}</span> :  
+                <div className='posts_container'>
+                    {posts.map((post) => (
+                        <Post post={post} key={post._id} />
+                    ))}
+                </div>
+            }
         </>
     )
 
