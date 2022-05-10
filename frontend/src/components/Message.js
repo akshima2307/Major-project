@@ -4,7 +4,7 @@ const Message = ({ children }) => {
   return <span style={{
             display: 'block',
             textAlign: 'center',
-            marginTop: '6rem'
+            margin: '3rem 0',
         }}>{children}</span>;
 };
 

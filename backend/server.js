@@ -5,6 +5,7 @@ import { notfound,errorHandler } from './middleware/errorMiddleware.js';
 import connectDB from './config/db.js';
 
 import postRoutes from './routes/postsRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 dotenv.config()
 
@@ -12,11 +13,14 @@ connectDB()
 
 const app = express();
 
+app.use(express.json())
+
 app.get('/', (req,res) => {
     res.send('API is running...')
 })
 
 app.use('/api/posts', postRoutes)
+app.use('/api/users', userRoutes)
 
 app.use(notfound)
 
