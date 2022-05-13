@@ -17,6 +17,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h2{
+  text-align: center;
+  font-weight: 500;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  margin-top: 2rem;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -506,4 +514,30 @@ code {
 .form_btns .logInbtn:hover{
   background-color: var(--primary-light);
   cursor: pointer;
+}
+
+/* User List */
+.user_list{
+  margin: 1rem auto;
+  width: 90%;
+}
+.user_list-header{
+  background-color: var(--primary-color);
+  color: white;
+}
+.user_list-header > th{
+  padding: 0.5rem 0;
+  font-weight: 600;
+}
+.user_list-data > td{
+  text-align: center;
+}
+.user_list-data  button{
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-family: inherit;
+  margin: 0.4rem 0;
 }
