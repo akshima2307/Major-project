@@ -1,9 +1,9 @@
 import React, {useState,useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
-import Message from './Message';
-import {register} from '../actions/userAction';
+import Message from '../components/Message';
+import {getUserDetails, updateUserProfile} from '../actions/userAction';
 
-const Signup = ({location,history}) => {
+const ProfileScreen = ({location,history}) => {
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -12,38 +12,49 @@ const Signup = ({location,history}) => {
 
     const dispatch = useDispatch()
 
-    const userRegister  = useSelector(state => state.userRegister)
+    const userDetails  = useSelector((state) => state.userDetails)
+    const {loading,error,user} = userDetails
 
-    const {loading,error,userInfo} = userRegister
+    const userLogin  = useSelector((state) => state.userLogin)
+    const {userInfo} = userLogin
 
-    const redirect = location.search ? location.search.split("=")[1] : '/'
+    const userUpdateProfile  = useSelector((state) => state.userUpdateProfile)
+    const {success} = userUpdateProfile
 
     useEffect(() => {
-        if(userInfo){
-            history.push(redirect)
+        if(!userInfo){
+            history.push('/login')
+        }else{
+            if(!user.name){
+                dispatch(getUserDetails('profile'))
+            }else{
+                console.log(user.name)
+                setName(user.name)
+                setEmail(user.email)
+
+            }
         }
-    }, [history, userInfo, redirect])
+    }, [dispatch,history, userInfo,user])
 
     const submitHandler = (e) => {
         e.preventDefault()
-        // Dispatch Register
         if(password !== confirmPassword) {
             setMessage('Password do not match')
         }else{
-            dispatch(register(name,email,password))
+            // Dispatch update profile
+            dispatch(updateUserProfile({ id: user._id, name, email, password }));
         }
     }
     
     return(
-        <section className="form_container">
-        <div className="form_left">
+    <section className="form_container">
+        <div className="form_left" style={{width: "70%"}}>
             <form className="form" onSubmit={submitHandler}>
-                <img src="/images/logo_header.svg" alt="logo" />
-                <h1>Sign-up to Artistry</h1>
-                <p className="span">Find new ideas to try</p>
+                <h1 style={{textAlign: 'left', marginBottom: "3rem"}}>User Profile Page</h1>
                 {error && <Message style={{"margin": "1rem 0"}}>{error}</Message>}
                 {loading && <Message style={{"margin": "1rem 0"}}>Loading...</Message>}
                 {message && <Message style={{"margin": "1rem 0"}}>{message}</Message>}
+                {success && <Message style={{"margin": "1rem 0"}}>Profile Updated</Message>}
                 <div className="form_group">
                     <label for="name">Name</label>
                     {/* <EmailOutlinedIcon className="form_icon" /> */}
@@ -66,16 +77,16 @@ const Signup = ({location,history}) => {
                 </div>
                 <div className="form_btns">
                     <div  style={{margin: 'auto'}}>
-                        <button type='submit' className="logInbtn" to="/homePage">Continue</button>
+                        <button type='submit' className="logInbtn" to="/homePage">Update</button>
                     </div>
                 </div>
             </form>
         </div>
         <div className="form_right">
-            <img src="/images/img_4.jpg" alt="img" />
+           
         </div>
     </section>
         )
 }
 
-export default Signup;
+export default ProfileScreen;

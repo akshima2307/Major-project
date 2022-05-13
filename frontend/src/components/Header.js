@@ -37,12 +37,14 @@ const Header = () => {
                                 "width": "8rem",
                                 "boxShadow": "0 5px 10px rgba(0,0,0,0.3)"
                             }}>
-                                <Link to="/profile" style={{
-                                    "padding": "0.3rem 0",
-                                    "cursor": "pointer"
-                                }}>
-                                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                                </Link>
+                                <NavDropdown.Item>
+                                    <Link to="/profile" style={{
+                                        "padding": "0.3rem 0",
+                                        "cursor": "pointer"
+                                    }}>
+                                        Profile
+                                    </Link>
+                                </NavDropdown.Item>
                                 <NavDropdown.Item onClick={logoutHandler} style={{
                                     "padding": "0.3rem 0",
                                     "cursor": "pointer"

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomeScreen from './screens/HomeScreen';
 import Header from './components/Header';
 import PostScreen from './screens/PostScreen';
+import ProfileScreeen from './screens/ProfileScreen';
 import NavBar from './components/NavBar';
 import Connects from './components/Connects';
 import About from './components/About';
@@ -25,6 +26,7 @@ function App() {
       <Route path="/like" component={LikeScreen} />
       <Route path="/login" component={LogIn} />
       <Route path="/signup" component={Signup} />
+      <Route path="/profile" component={ProfileScreeen} />
     </Router>
   );
 }
