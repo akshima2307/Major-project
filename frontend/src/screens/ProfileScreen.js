@@ -2,6 +2,8 @@ import React, {useState,useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import Message from '../components/Message';
 import {getUserDetails, updateUserProfile} from '../actions/userAction';
+import { createPost } from '../actions/postAction';
+import { POST_CREATE_RESET } from '../constants/postConstants';
 
 const ProfileScreen = ({location,history}) => {
     const [name,setName] = useState('')
@@ -21,6 +23,9 @@ const ProfileScreen = ({location,history}) => {
     const userUpdateProfile  = useSelector((state) => state.userUpdateProfile)
     const {success} = userUpdateProfile
 
+    const postCreate = useSelector(state => state.postCreate)
+    const {success: successCreate, post: createdPost} = postCreate
+
     useEffect(() => {
         if(!userInfo){
             history.push('/login')
@@ -28,13 +33,17 @@ const ProfileScreen = ({location,history}) => {
             if(!user.name){
                 dispatch(getUserDetails('profile'))
             }else{
-                console.log(user.name)
                 setName(user.name)
                 setEmail(user.email)
 
             }
         }
-    }, [dispatch,history, userInfo,user])
+        dispatch({type: POST_CREATE_RESET})
+        if(successCreate){
+            console.log(createdPost._id)
+            history.push(`/user/post/${createdPost._id}/edit`)
+        }
+    }, [dispatch,history,createdPost,successCreate,userInfo,user])
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -44,6 +53,10 @@ const ProfileScreen = ({location,history}) => {
             // Dispatch update profile
             dispatch(updateUserProfile({ id: user._id, name, email, password }));
         }
+    }
+
+    const createPostHandler = () => {
+        dispatch(createPost())
     }
     
     return(
@@ -83,7 +96,7 @@ const ProfileScreen = ({location,history}) => {
             </form>
         </div>
         <div className="form_right">
-           
+        <button onClick={createPostHandler}>Create A Post</button>
         </div>
     </section>
         )

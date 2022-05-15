@@ -2,6 +2,8 @@ import React,{useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
 import { listPostDetails } from '../actions/postAction';
+import {getUserDetails} from '../actions/userAction';
+
 
 const PostScreen = ({history,match}) => {
     const dispatch = useDispatch()
@@ -9,8 +11,11 @@ const PostScreen = ({history,match}) => {
     const postDetails = useSelector(state => state.postDetails)
     const {loading,error, post}= postDetails
 
+    dispatch(getUserDetails(post.user))
+
     useEffect(() => {
         dispatch(listPostDetails(match.params.id))
+        
     }, [dispatch, match])
 
     const likeHandler = () => {

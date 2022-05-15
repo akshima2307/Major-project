@@ -1,10 +1,12 @@
 import express from 'express';
+import {protect} from '../middleware/authMiddleware.js'
+
 const router = express.Router()
-import {getPosts,getPostById} from '../controllers/postController.js'
+import {getPosts,getPostById,createPost, updatePost} from '../controllers/postController.js'
 
  
-router.route('/').get(getPosts)
+router.route('/').get(getPosts).post(protect,createPost)
 
-router.route('/:id').get(getPostById)
+router.route('/:id').get(getPostById).put(protect, updatePost)
 
 export default router

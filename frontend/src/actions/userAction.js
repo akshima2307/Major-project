@@ -96,7 +96,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
             : error.message,
       });
     }
-  };
+};
 
 export const updateUserProfile = (user) => async (dispatch, getState) => {
     try {

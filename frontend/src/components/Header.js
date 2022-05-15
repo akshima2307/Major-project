@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 import { logout } from '../actions/userAction';
+
 
 
 const Header = () => {
@@ -37,13 +38,13 @@ const Header = () => {
                                 "width": "8rem",
                                 "boxShadow": "0 5px 10px rgba(0,0,0,0.3)"
                             }}>
-                                <NavDropdown.Item>
-                                    <Link to="/profile" style={{
+                                <NavDropdown.Item style={{
                                         "padding": "0.3rem 0",
                                         "cursor": "pointer"
                                     }}>
-                                        Profile
-                                    </Link>
+                                        <Link to="/profile">
+                                            Profile
+                                        </Link>
                                 </NavDropdown.Item>
                                 <NavDropdown.Item onClick={logoutHandler} style={{
                                     "padding": "0.3rem 0",

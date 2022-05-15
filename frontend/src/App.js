@@ -11,6 +11,7 @@ import LikeScreen from './screens/LikeScreen';
 import LogIn from './components/Login';
 import Signup from './components/Signup';
 import UserListScreen from './screens/UserListScreen';
+import PostEditScreen from './screens/PostEditScreen';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       <Route path="/signup" component={Signup} />
       <Route path="/profile" component={ProfileScreeen} />
       <Route path="/connects" component={UserListScreen} />
+      <Route path='/user/post/:id/edit' component={PostEditScreen} />
     </Router>
   );
 }

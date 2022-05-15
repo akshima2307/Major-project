@@ -1,4 +1,4 @@
-import { POST_DETAILS_FAIL, POST_DETAILS_REQUEST, POST_DETAILS_SUCESS, POST_LIST_FAIL, POST_LIST_REQUEST, POST_LIST_SUCESS,POST_LIKE_ADD,POST_LIKE_REMOVE } from "../constants/postConstants"
+import { POST_DETAILS_FAIL, POST_DETAILS_REQUEST, POST_DETAILS_SUCESS, POST_LIST_FAIL, POST_LIST_REQUEST, POST_LIST_SUCESS,POST_LIKE_ADD,POST_LIKE_REMOVE, POST_CREATE_REQUEST, POST_CREATE_SUCESS, POST_CREATE_FAIL, POST_CREATE_RESET, POST_UPDATE_REQUEST, POST_UPDATE_SUCESS, POST_UPDATE_FAIL, POST_UPDATE_RESET } from "../constants/postConstants"
 
 export const postListReducer = (state = {posts: []}, action) => {
     switch(action.type){
@@ -53,3 +53,33 @@ export const likeReducer = (state = {likeItems: []}, action) => {
     }
 }
 
+
+export const postCreateReducer = (state = {}, action) => {
+    switch(action.type){
+        case POST_CREATE_REQUEST:
+            return { loading: true, ...state }
+        case POST_CREATE_SUCESS:
+            return { loading: false,success: true, post: action.payload }
+        case POST_CREATE_FAIL:
+            return {loading: false, error: action.payload }
+        case POST_CREATE_RESET:
+            return {}
+        default:
+            return state
+    }
+}  
+
+export const postUpdateReducer = (state = {post: {}}, action) => {
+    switch(action.type){
+        case POST_UPDATE_REQUEST:
+            return { loading: true, ...state }
+        case POST_UPDATE_SUCESS:
+            return { loading: false,success: true, post: action.payload }
+        case POST_UPDATE_FAIL:
+            return {loading: false, error: action.payload }
+        case POST_UPDATE_RESET:
+            return {post: {}}
+        default:
+            return state
+    }
+} 
