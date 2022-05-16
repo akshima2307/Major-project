@@ -3,6 +3,9 @@ import bcrypt from "bcryptjs";
 
 const userSchema = mongoose.Schema(
   {
+    img:{
+      type: String
+    },
     name: {
       type: String,
       required: true,

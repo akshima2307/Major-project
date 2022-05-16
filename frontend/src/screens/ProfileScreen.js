@@ -60,10 +60,13 @@ const ProfileScreen = ({location,history}) => {
     }
     
     return(
-    <section className="form_container">
-        <div className="form_left" style={{width: "70%"}}>
-            <form className="form" onSubmit={submitHandler}>
-                <h1 style={{textAlign: 'left', marginBottom: "3rem"}}>User Profile Page</h1>
+    <section className="profile">
+        <div className="profile_details">
+            <form className="profile_form" onSubmit={submitHandler}>
+                <div className='profile_header'>   
+                    <h2>User Profile</h2>
+                    <button onClick={createPostHandler}>Create A Post</button>
+                </div>
                 {error && <Message style={{"margin": "1rem 0"}}>{error}</Message>}
                 {loading && <Message style={{"margin": "1rem 0"}}>Loading...</Message>}
                 {message && <Message style={{"margin": "1rem 0"}}>{message}</Message>}
@@ -90,13 +93,10 @@ const ProfileScreen = ({location,history}) => {
                 </div>
                 <div className="form_btns">
                     <div  style={{margin: 'auto'}}>
-                        <button type='submit' className="logInbtn" to="/homePage">Update</button>
+                        <button type='submit' to="/homePage">Update</button>
                     </div>
                 </div>
             </form>
-        </div>
-        <div className="form_right">
-        <button onClick={createPostHandler}>Create A Post</button>
         </div>
     </section>
         )

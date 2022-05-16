@@ -1,9 +1,10 @@
 import React, {useState,useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import {listPostDetails, updatePost} from '../actions/postAction'
 import { POST_UPDATE_RESET } from '../constants/postConstants';
+
 
 const PostEditScreen = ({match,history}) => {
     const dispatch = useDispatch()
@@ -13,6 +14,7 @@ const PostEditScreen = ({match,history}) => {
     const [description, setDescription] = useState("")
     const [category, setCategory] = useState("")
     const [img, setImg] = useState("")
+    const [uploading, setUploading] = useState(false)
 
     const postDetails = useSelector((state) => state.postDetails)
     const {loading, error, post} = postDetails
@@ -34,7 +36,31 @@ const PostEditScreen = ({match,history}) => {
                 setImg(post.img)
             }
         }
-    },[dispatch,postId,post,successUpdate])
+    },[dispatch,postId,post,successUpdate, history])
+
+    const uploadFileHandler = async (e) => {
+        const file = e.target.files[0]
+        const formData = new FormData()
+        formData.append('img', file)
+        setUploading(true)
+
+        try{
+            const config = {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+
+            const {data} = await axios.post('/api/upload', formData, config)
+
+            setImg(data)
+            setUploading(false)
+
+        }catch(error){  
+            console.error(error)
+            setUploading(false)
+        }
+    } 
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -91,6 +117,8 @@ const PostEditScreen = ({match,history}) => {
                         value={img}
                         onChange={(e) => setImg(e.target.value)}    
                     />
+                    <input type="file"  onChange={uploadFileHandler}/>
+                    {uploading && <Message>Loading...</Message>}
                 </div>
                 <button type='submit'>Update</button>
             </form>

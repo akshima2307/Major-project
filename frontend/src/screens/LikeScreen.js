@@ -27,7 +27,7 @@ const LikeScreen = ({match, location, history}) => {
                     <Message>There is no liked posts.</Message>
                 ): likeItems.map(item => (
                     <div className='like-card' key={item.post}>
-                        <Link to={`/post/${item.post}`}><img src={item.image} /></Link>
+                        <Link to={`/post/${item.post}`}><img src={item.image} alt="img" /></Link>
                         <div className='like-content'>
                             <Link to={`/post/${item.post}`}>{item.name}</Link>
                             <p>{item.description}</p>

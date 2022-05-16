@@ -1,3 +1,4 @@
+import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
 import colors from 'colors';
@@ -6,6 +7,7 @@ import connectDB from './config/db.js';
 
 import postRoutes from './routes/postsRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import uploadRoutes from './routes/uploadRoutes.js';
 
 dotenv.config()
 
@@ -21,6 +23,10 @@ app.get('/', (req,res) => {
 
 app.use('/api/posts', postRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api/upload', uploadRoutes)
+
+const __dirname = path.resolve()
+app.use('/upload', express.static(path.join(__dirname, '/upload')))
 
 app.use(notfound)
 

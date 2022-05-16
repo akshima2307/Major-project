@@ -541,3 +541,58 @@ code {
   font-family: inherit;
   margin: 0.4rem 0;
 }
+
+/* Profile Screen */
+
+.profile{
+  margin: auto;
+  width: 80%;
+  text-align: center;
+}
+
+.profile_form{
+  display: flex;
+  flex-direction: column;
+}
+.profile .profile_header{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+.profile .profile_header > button{
+  background: var(--primary-color);
+  color: white;
+  padding: 0.7rem 3rem;
+  height: max-content;
+  font-family: inherit;
+  text-transform: uppercase;
+  border: none;
+}
+.profile .form_group{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  justify-content: center;
+  align-items: flex-start;
+}
+.profile .form_group label{
+  margin-bottom: 0.6rem;
+  margin-top: 1rem;
+}
+.profile .form_group input{
+  font-size: 1rem;
+  width: 100%;
+  border: none;
+  padding: 0.6rem 1rem;
+  background: rgb(230, 229, 229);
+}
+.profile .profile_form .form_btns button{
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 2rem;
+  font-family: inherit;
+  margin: 2rem 0;
+}

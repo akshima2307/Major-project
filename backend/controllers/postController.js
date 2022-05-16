@@ -49,7 +49,7 @@ const createPost = asyncHandler(async(req,res) => {
 const updatePost = asyncHandler(async(req,res) => {
     const {
         title,
-        image,
+        img,
         description,
         category
         } = req.body
@@ -57,7 +57,7 @@ const updatePost = asyncHandler(async(req,res) => {
 
     if(post){
         post.title = title
-        post.image = image
+        post.img = img
         post.description = description
         post.category = category
 
