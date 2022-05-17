@@ -14,7 +14,7 @@ const LogIn = ({history, location}) => {
 
     const {loading,error,userInfo} = userLogin
 
-    const redirect = location.search ? location.search.split("=")[1] : '/'
+    const redirect = location.search ? location.search.split("=")[1] : '/home'
 
     useEffect(() => {
         if(userInfo){

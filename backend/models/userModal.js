@@ -4,7 +4,9 @@ import bcrypt from "bcryptjs";
 const userSchema = mongoose.Schema(
   {
     img:{
-      type: String
+      type: String,
+      required: true,
+      default: '/images/default-user.jpg'
     },
     name: {
       type: String,

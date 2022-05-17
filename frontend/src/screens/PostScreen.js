@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
 import { listPostDetails } from '../actions/postAction';
 import {getUserDetails} from '../actions/userAction';
+import Message from '../components/Message';
 
 
 const PostScreen = ({history,match}) => {
@@ -11,12 +12,23 @@ const PostScreen = ({history,match}) => {
     const postDetails = useSelector(state => state.postDetails)
     const {loading,error, post}= postDetails
 
-    dispatch(getUserDetails(post.user))
+    const userDetails = useSelector(state => state.userDetails)
+    const {loading:loadingUserDetails,error:errorUserDetails ,user}= userDetails
+
+    const userLogin  = useSelector((state) => state.userLogin)
+    const {userInfo} = userLogin
 
     useEffect(() => {
         dispatch(listPostDetails(match.params.id))
-        
     }, [dispatch, match])
+
+    useEffect(() => {
+        if(userInfo && !loading){
+            dispatch(getUserDetails(post.user)); 
+        }else{
+            history.push('/login')
+        }
+    },[dispatch, loading, history,post,userInfo])
 
     const likeHandler = () => {
         history.push(`/like/${match.params.id}`, match.params.id)
@@ -43,10 +55,14 @@ const PostScreen = ({history,match}) => {
                         <h3>{post.title}</h3>
                         <p>{post.description}</p>
                         <span>Artist Details</span>
-                        <Link to={"/"} className='artist-info'>
-                            <img src={post.artistImg} alt="artist-img" />
-                            <span>{post.artistName}</span>
-                        </Link>
+                            {loadingUserDetails && <Message>Loading...</Message>}
+                            {errorUserDetails ? <Message>{errorUserDetails}</Message> :
+                             (
+                                <Link to={"/"} className='artist-info'>
+                                    <img src={user.img} alt="artist-img" />
+                                    <span>{user.name}</span>
+                                </Link>
+                            )}
                         <form className='art-details'>
                             <button type='button' onClick={likeHandler}><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;{post.likes}</button>
                             <button><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;{post.views}</button>

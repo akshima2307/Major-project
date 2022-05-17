@@ -111,6 +111,27 @@ code {
 .posts_container .post .post-img{
   width: 100%;
   height: 15rem;
+  position: relative;
+}
+.posts_container .post .post-img .fa-pencil-square-o{
+  font-size: 1.2rem;
+  color: white;
+  position: absolute;
+  top: 5%;
+  right: 18%;
+  padding: 0.4rem;
+  background: var(--primary-color);
+  border-radius: 10px;
+}
+.posts_container .post .post-img .fa-trash-o{
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  padding: 0.4rem;
+  background: rgba(255,255,255,0.5);
+  border-radius: 10px;
 }
 .posts_container .post .post-img > img{
   width: 100%;
@@ -557,10 +578,20 @@ code {
 .profile .profile_header{
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
-.profile .profile_header > button{
+.profile .profile_header > div > a{
+  background: rgb(230, 229, 229);
+  margin-right: 0.6rem;
+  color: var(--primary-color);
+  padding: 0.7rem 3rem;
+  text-transform: uppercase;
+  font-size: 1rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+.profile .profile_header > div > button{
   background: var(--primary-color);
   color: white;
   padding: 0.7rem 3rem;
@@ -568,6 +599,9 @@ code {
   font-family: inherit;
   text-transform: uppercase;
   border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
 }
 .profile .form_group{
   width: 50%;
@@ -592,7 +626,61 @@ code {
   background: var(--primary-color);
   color: white;
   border: none;
-  padding: 0.5rem 2rem;
+  padding: 0.6rem 3rem;
+  font-size: 1rem;
   font-family: inherit;
   margin: 2rem 0;
+  cursor: pointer;
 }
+.profile .form_group img{
+  width: 10rem;
+  height: 10rem;
+  margin: 0.5rem auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile .form_groups{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.profile .form_groups .form_group{
+  width: 40%;
+}
+
+.searchForm{
+  justify-content: end;
+  display: flex;
+  margin-right: 3rem;
+  margin-bottom: 2rem;
+}
+.searchForm .searchBox{
+  width: 22rem;
+  position: relative;
+}
+.searchForm .searchBox input{
+  font-size: 1rem;
+  width: 100%;
+  border: none;
+  padding: 1rem 2rem;
+  padding-right: 0;
+  background: rgb(243, 243, 243);
+}
+.searchForm .searchBox i{
+  position: absolute;
+  right: 0%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.searchForm button{
+  margin-left: 3rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.6rem 3rem;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+

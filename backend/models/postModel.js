@@ -20,6 +20,7 @@ const postSchema = mongoose.Schema(
     img: {
       type: String,
       required: true,
+      default: '/images/logo_header.svg'
     },
     description: {
         type: String,

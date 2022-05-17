@@ -75,14 +75,25 @@ const PostEditScreen = ({match,history}) => {
     }
 
     return (
-        <div>
-            <span>Edit Post</span>
+        <div className="profile">
+            <h2>Edit Post</h2>
             {loading && <Message>Loading...</Message>}
             {error && <Message>{error}</Message>}
             {loadingUpdate && <Message>Loading...</Message>}
             {errorUpdate && <Message>{errorUpdate}</Message>}
-            <form onSubmit={submitHandler}>
-                <div>
+            <form className="profile_form" onSubmit={submitHandler}>
+                <div className='form_group'>
+                    {post.title && <img src={post.img} alt="post-img" />}
+                    <input 
+                        type='text' 
+                        placeholder="Enter url for the img..."
+                        value={img}
+                        onChange={(e) => setImg(e.target.value)}    
+                    />
+                    <input type="file"  onChange={uploadFileHandler}/>
+                    {uploading && <Message>Loading...</Message>}
+                </div>
+                <div className='form_group'>
                     <label>Post title</label>
                     <input 
                         type='text' 
@@ -91,7 +102,8 @@ const PostEditScreen = ({match,history}) => {
                         onChange={(e) => setTitle(e.target.value)}    
                     />
                 </div>
-                <div>
+
+                <div className='form_group'>
                     <label>Description</label>
                     <input 
                         type='text' 
@@ -100,7 +112,7 @@ const PostEditScreen = ({match,history}) => {
                         onChange={(e) => setDescription(e.target.value)}    
                     />
                 </div>
-                <div>
+                <div className='form_group'>
                     <label>Category</label>
                     <input 
                         type='text' 
@@ -109,18 +121,11 @@ const PostEditScreen = ({match,history}) => {
                         onChange={(e) => setCategory(e.target.value)}    
                     />
                 </div>
-                <div>
-                    <label>Image</label>
-                    <input 
-                        type='text' 
-                        placeholder="Enter description..."
-                        value={img}
-                        onChange={(e) => setImg(e.target.value)}    
-                    />
-                    <input type="file"  onChange={uploadFileHandler}/>
-                    {uploading && <Message>Loading...</Message>}
+                <div className="form_btns">
+                    <div  style={{margin: 'auto'}}>
+                        <button type='submit'>Update</button>
+                    </div>
                 </div>
-                <button type='submit'>Update</button>
             </form>
         </div>
     )

@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { POST_DETAILS_FAIL, POST_DETAILS_REQUEST, POST_DETAILS_SUCESS, POST_LIST_FAIL, POST_LIST_REQUEST, POST_LIST_SUCESS,POST_LIKE_ADD,POST_LIKE_REMOVE, POST_CREATE_REQUEST, POST_CREATE_SUCESS, POST_CREATE_FAIL, POST_UPDATE_REQUEST, POST_UPDATE_SUCESS, POST_UPDATE_FAIL } from "../constants/postConstants"
+import { POST_DETAILS_FAIL, POST_DETAILS_REQUEST, POST_DETAILS_SUCESS, POST_LIST_FAIL, POST_LIST_REQUEST, POST_LIST_SUCESS,POST_LIKE_ADD,POST_LIKE_REMOVE, POST_CREATE_REQUEST, POST_CREATE_SUCESS, POST_CREATE_FAIL, POST_UPDATE_REQUEST, POST_UPDATE_SUCESS, POST_UPDATE_FAIL, POST_LIST_OF_USER_REQUEST, POST_LIST_OF_USER_FAIL, POST_LIST_OF_USER_SUCCESS, POST_DELETE_REQUEST, POST_DELETE_SUCESS, POST_DELETE_FAIL } from "../constants/postConstants"
 
 
-export const listPosts = () => async(dispatch) => {
+export const listPosts = (keyword = "") => async(dispatch) => {
     try{
         dispatch({type: POST_LIST_REQUEST})
 
-        const { data } = await axios.get('/api/posts')
+        const { data } = await axios.get(`/api/posts?keyword=${keyword}`)
 
         dispatch({
             type: POST_LIST_SUCESS,
@@ -98,6 +98,36 @@ export const createPost = () => async (dispatch, getState) => {
     }
 };
 
+export const deletePost = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: POST_DELETE_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    await axios.delete(`/api/posts/${id}`, config);
+    dispatch({
+      type: POST_DELETE_SUCESS,
+    });
+  } catch (error) {
+    dispatch({
+      type: POST_DELETE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
 export const updatePost = (post) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -129,6 +159,36 @@ export const updatePost = (post) => async (dispatch, getState) => {
     });
   }
 };
+
+
+export const listPostsByUser = (id) => async(dispatch,getState) => {
+  try{
+      dispatch({type: POST_LIST_OF_USER_REQUEST})
+
+      const {
+        userLogin: { userInfo },
+      } = getState();
+  
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+
+      const { data } = await axios.get(`/api/posts/user/${id}`, config)
+
+      dispatch({
+          type: POST_LIST_OF_USER_SUCCESS,
+          payload: data
+      })
+
+  }catch(error){
+      dispatch({
+          type: POST_LIST_OF_USER_FAIL,
+          payload: error.response && error.response.data.message ? error.response.data.message : error.message
+      })
+  }
+}
 
 
 

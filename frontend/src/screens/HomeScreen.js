@@ -1,21 +1,24 @@
 import React,{useEffect} from 'react';
+import {Route} from 'react-router-dom';
 import Post from '../components/Post';
 import {useDispatch, useSelector} from 'react-redux'
 import { listPosts } from '../actions/postAction'
+import SearchBox from '../components/SearchBox';
 
-const HomeScreen = () => {
+const HomeScreen = ({match}) => {
+    const keyword = match.params.keyword
 
     const dispatch = useDispatch()
     const postList = useSelector(state => state.postList)
     const {loading,error,posts} = postList
 
     useEffect(() => {
-        dispatch(listPosts())
+        dispatch(listPosts(keyword))
     }, [dispatch])
-
     return(
         <>
             <h2 style={{textAlign: 'center', fontWeight: 500,color:"var(--primary-color)", textTransform:"uppercase", marginTop: '2rem'}}>Latest Posts</h2>
+            <Route render={({history}) => <SearchBox history={history} />} />
             {loading ? <span style={{
                 display: 'block',
                 textAlign: 'center',
@@ -33,7 +36,5 @@ const HomeScreen = () => {
             }
         </>
     )
-
 }
-
 export default HomeScreen;

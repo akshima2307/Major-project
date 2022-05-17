@@ -31,8 +31,7 @@ const Header = () => {
                             <div style={{
                                 "display": "flex",
                                 "flexDirection": "column",
-                                "justifyContent": "center",
-                                "alignItems": "center",
+                                "alignItems": "flex-start",
                                 "background": "white",
                                 "padding": "0.6rem",
                                 "width": "8rem",
@@ -40,17 +39,26 @@ const Header = () => {
                             }}>
                                 <NavDropdown.Item style={{
                                         "padding": "0.3rem 0",
-                                        "cursor": "pointer"
+                                        "cursor": "pointer",
+                                        "marginLeft": '1rem'
                                     }}>
                                         <Link to="/profile">
-                                            Profile
+                                        <i class="fa fa-user" aria-hidden="true"></i>Profile
                                         </Link>
+                                </NavDropdown.Item>
+                                <NavDropdown.Item style={{
+                                        "padding": "0.3rem 0",
+                                        "cursor": "pointer",
+                                        "marginLeft": '1rem'
+                                    }}>
+                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i><Link to={'/like'}>Liked Post</Link>
                                 </NavDropdown.Item>
                                 <NavDropdown.Item onClick={logoutHandler} style={{
                                     "padding": "0.3rem 0",
-                                    "cursor": "pointer"
+                                    "cursor": "pointer",
+                                    "marginLeft": '1rem'
                                 }}>
-                                Logout
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
                                 </NavDropdown.Item>
                             </div>
                       </NavDropdown>

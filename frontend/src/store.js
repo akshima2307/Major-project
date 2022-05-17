@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { postListReducer, postDetailsReducer, likeReducer, postCreateReducer, postUpdateReducer } from "./reducers/postReducers";
+import { postListReducer, postDetailsReducer, likeReducer, postCreateReducer,postDeleteReducer, postUpdateReducer,postListOfUserReducer } from "./reducers/postReducers";
 import { userLoginReducer, userRegisterReducer,userDetailsReducer, userUpdateProfileReducer,userListReducer } from "./reducers/userReducers";
 
 const reducer = combineReducers({
@@ -14,7 +14,9 @@ const reducer = combineReducers({
   userUpdateProfile: userUpdateProfileReducer,
   postCreate: postCreateReducer,
   postUpdate: postUpdateReducer,
-  userList:userListReducer
+  userList:userListReducer,
+  postListOfUser: postListOfUserReducer,
+  postDelete:postDeleteReducer
 });
 
 const likeItemsFromStorage = localStorage.getItem('likeItems') ? JSON.parse(localStorage.getItem('likeItems')) : [] 

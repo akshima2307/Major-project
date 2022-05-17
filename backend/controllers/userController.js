@@ -1,7 +1,6 @@
 import User from '../models/userModal.js';
 import asyncHandler from 'express-async-handler';
 import generateToken from '../utlis/generateToken.js';
-import Post from '../models/postModel.js';
 
 //@desc   Auth user
 //@route  POST /api/users/login
@@ -49,6 +48,7 @@ const registerUser = asyncHandler(async(req,res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            img: '/images/default-user.jpg',
             token: generateToken(user._id),
         })
     }else{
@@ -70,6 +70,7 @@ const getUserProfile = asyncHandler(async(req,res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            img: user.img
         })
 
     }else{
@@ -87,6 +88,7 @@ const updateUserProfile = asyncHandler(async(req,res) => {
     if(user){
         user.name = req.body.name || user.name
         user.email = req.body.email || user.email
+        user.img = req.body.img || user.img
         if(req.body.password){
             user.password = req.body.password
         }
@@ -97,6 +99,7 @@ const updateUserProfile = asyncHandler(async(req,res) => {
             _id: updatedUser._id,
             name: updatedUser.name,
             email: updatedUser.email,
+            img: updatedUser.img,
             token: generateToken(updatedUser._id),
         })
     }else{
@@ -115,7 +118,7 @@ const getUsers = asyncHandler(async(req,res) => {
 
 // @desc    Get user by ID
 // @route   GET /api/users/:id
-// @access  Private/admin
+// @access  Private
 const getUserById = asyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id).select("-password");
     if (user) {

@@ -12,6 +12,7 @@ import LogIn from './components/Login';
 import Signup from './components/Signup';
 import UserListScreen from './screens/UserListScreen';
 import PostEditScreen from './screens/PostEditScreen';
+import UserPostScreen from './screens/UserPostScreen';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
     <Router>
       <Header />
       <NavBar />
+      <Route path="/search/:keyword" component={HomeScreen}  />
       <Route path="/home" component={HomeScreen} exact />
       <Route path="/post/:id" component={PostScreen} />
       <Route path="/about" component={About} />
@@ -29,6 +31,7 @@ function App() {
       <Route path="/profile" component={ProfileScreeen} />
       <Route path="/connects" component={UserListScreen} />
       <Route path='/user/post/:id/edit' component={PostEditScreen} />
+      <Route path='/userpost/:id' component={UserPostScreen} />
     </Router>
   );
 }

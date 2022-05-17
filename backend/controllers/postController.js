@@ -5,7 +5,14 @@ import asyncHandler from 'express-async-handler';
 //@route  GET /api/posts
 //@acess  Public 
 const getPosts = asyncHandler(async(req,res) => {
-    const posts = await Post.find({})
+    const keyword = req.query.keyword ? {
+        title: {
+            $regex: req.query.keyword,
+            $options: 'i'
+        }
+    } : {}
+
+    const posts = await Post.find({ ...keyword })
     res.json(posts)
 })
 
@@ -16,6 +23,20 @@ const getPostById = asyncHandler(async(req,res) => {
     const post = await Post.findById(req.params.id)
     if(post){
         res.json(post)
+    }else{
+        res.status(404)
+        throw new Error('Post not found')
+    }
+})
+
+//@desc   Delete a post
+//@route  DELETE /api/posts/:id
+//@acess  Private 
+const deletePost = asyncHandler(async(req,res) => {
+    const post = await Post.findById(req.params.id)
+    if(post){
+        await post.remove()
+        res.json({message: "Post Removed!"})
     }else{
         res.status(404)
         throw new Error('Post not found')
@@ -71,4 +92,19 @@ const updatePost = asyncHandler(async(req,res) => {
     }
 })
 
-export {getPosts, getPostById,updatePost,createPost}
+// @desc    Get post uploaded by login user
+// @route   GET /api/posts/user/:id
+// @access  Private
+const getPostByUserId = asyncHandler(async (req, res) => {
+    const posts = await Post.find({user: req.params.id});
+    if (posts) {
+      res.json(posts);
+    } else {
+      res.status(404);
+      throw new Error("User not found");
+    }
+  });
+
+
+
+export {getPosts, getPostById,updatePost,deletePost,createPost,getPostByUserId}
