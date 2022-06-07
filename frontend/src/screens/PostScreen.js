@@ -1,16 +1,23 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
-import { listPostDetails } from '../actions/postAction';
+import { listPostDetails, createPostReview } from '../actions/postAction';
 import {getUserDetails} from '../actions/userAction';
 import Message from '../components/Message';
+import { POST_CREATE_REVIEW_RESET } from '../constants/postConstants';
 
 
 const PostScreen = ({history,match}) => {
+
+    const [comment,setComment] = useState('')
+
     const dispatch = useDispatch()
 
     const postDetails = useSelector(state => state.postDetails)
     const {loading,error, post}= postDetails
+
+    const postReviewCreate = useSelector(state => state.postReviewCreate)
+    const {success:successPostReview ,error:errorPostReview}= postReviewCreate
 
     const userDetails = useSelector(state => state.userDetails)
     const {loading:loadingUserDetails,error:errorUserDetails ,user}= userDetails
@@ -28,11 +35,23 @@ const PostScreen = ({history,match}) => {
         }else{
             history.push('/login')
         }
-    },[dispatch, loading, history,post,userInfo])
+        if(successPostReview){
+            alert('Comment Added!!')
+            setComment("")
+            dispatch({type: POST_CREATE_REVIEW_RESET})
+        }
+    },[dispatch, loading, history,post,userInfo,successPostReview])
 
     const likeHandler = () => {
         history.push(`/like/${match.params.id}`, match.params.id)
     };
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        dispatch(createPostReview(match.params.id,{
+            comment,
+        }))
+    }
 
     return(
         <>
@@ -65,7 +84,7 @@ const PostScreen = ({history,match}) => {
                             )}
                         <form className='art-details'>
                             <button type='button' onClick={likeHandler}><i class="fa fa-thumbs-up" aria-hidden="true"></i>&nbsp;{post.likes}</button>
-                            <button><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;{post.views}</button>
+                            <button><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;{post.numReviews}</button>
                         </form>
                     </div>
                 </div>
@@ -73,25 +92,29 @@ const PostScreen = ({history,match}) => {
                 <div className='comment-info'>
                     
                     <ul className='comment-list'>
-                        <li className='comment'>
+                        {/* <li className='comment'>
                             <img src="/images/img_1.jpg" alt="user-img" />
                             <div>
                                 <p>User</p>
                                 <p>Amazing work!</p>
                             </div>
-                        </li>
-                        <li className='comment'>
-                            <img src="/images/img_1.jpg" alt="user-img" />
-                            <div>
-                                <p>User 2</p>
-                                <p>Nice work!</p>
-                            </div>
-                        </li>
+                        </li> */}
+                        {post.reviews.length === 0 && <Message>No Reviews!</Message>}
+                        {post.reviews.map((review => (
+                            <li className='comment' key={review._id}>
+                                <img src={review.img} alt="user-img" />
+                                <div>
+                                    <p>{review.name}</p>
+                                    <p>{review.comment}</p>
+                                </div>
+                            </li>
+                        )))}
                     </ul>
-                    <form>
+                    <form onSubmit={submitHandler}>
                         <div>
                             <span>Enter your Comment</span>
-                            <input type="text" placeholder='Enter your comment....' />
+                            {errorPostReview && <Message>{errorPostReview}</Message>}
+                            <input type="text" value={comment} onChange={(e) => setComment(e.target.value)}  placeholder='Enter your comment....' />
                         </div>
                         <button type='submit'>Submit</button>
                     </form>

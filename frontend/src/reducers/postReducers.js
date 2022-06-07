@@ -1,4 +1,4 @@
-import { POST_DETAILS_FAIL, POST_DETAILS_REQUEST, POST_DETAILS_SUCESS, POST_LIST_FAIL, POST_LIST_REQUEST, POST_LIST_SUCESS,POST_LIKE_ADD,POST_LIKE_REMOVE, POST_CREATE_REQUEST, POST_CREATE_SUCESS, POST_CREATE_FAIL, POST_CREATE_RESET, POST_UPDATE_REQUEST, POST_UPDATE_SUCESS, POST_UPDATE_FAIL, POST_UPDATE_RESET, POST_LIST_OF_USER_REQUEST, POST_LIST_OF_USER_SUCCESS, POST_LIST_OF_USER_FAIL, POST_DELETE_REQUEST, POST_DELETE_SUCESS, POST_DELETE_FAIL } from "../constants/postConstants"
+import { POST_DETAILS_FAIL, POST_DETAILS_REQUEST, POST_DETAILS_SUCESS, POST_LIST_FAIL, POST_LIST_REQUEST, POST_LIST_SUCESS,POST_LIKE_ADD,POST_LIKE_REMOVE, POST_CREATE_REQUEST, POST_CREATE_SUCESS, POST_CREATE_FAIL, POST_CREATE_RESET, POST_UPDATE_REQUEST, POST_UPDATE_SUCESS, POST_UPDATE_FAIL, POST_UPDATE_RESET, POST_LIST_OF_USER_REQUEST, POST_LIST_OF_USER_SUCCESS, POST_LIST_OF_USER_FAIL, POST_DELETE_REQUEST, POST_DELETE_SUCESS, POST_DELETE_FAIL, POST_CREATE_REVIEW_REQUEST, POST_CREATE_REVIEW_SUCESS, POST_CREATE_REVIEW_FAIL, POST_CREATE_REVIEW_RESET } from "../constants/postConstants"
 
 export const postListReducer = (state = {posts: []}, action) => {
     switch(action.type){
@@ -110,3 +110,18 @@ export const postListOfUserReducer = (state = {posts: []}, action) => {
             return state
     }
 }
+
+export const postReviewCreateReducer = (state = {}, action) => {
+    switch(action.type){
+        case POST_CREATE_REVIEW_REQUEST:
+            return { loading: true }
+        case POST_CREATE_REVIEW_SUCESS:
+            return { loading: false,success: true }
+        case POST_CREATE_REVIEW_FAIL:
+            return {loading: false, error: action.payload }
+        case POST_CREATE_REVIEW_RESET:
+            return {}
+        default:
+            return state
+    }
+} 

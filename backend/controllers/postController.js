@@ -1,5 +1,6 @@
 import Post from '../models/postModel.js';
 import asyncHandler from 'express-async-handler';
+import User from '../models/userModal.js';
 
 //@desc   Fetch All Posts
 //@route  GET /api/posts
@@ -103,8 +104,41 @@ const getPostByUserId = asyncHandler(async (req, res) => {
       res.status(404);
       throw new Error("User not found");
     }
-  });
+});
+
+//@desc   Create new review
+//@route  POST /api/posts/:id/reviews
+//@acess  PRIVATE 
+
+const createPostReview = asyncHandler(async(req,res) => {
+    const {comment} = req.body
+    const post = await Post.findById(req.params.id)
+
+    if(post){
+        const alreadyReviewed = post.reviews.find(r => r.user.toString() === req.user._id.toString())
+        if(alreadyReviewed){
+            res.status(400)
+            throw new Error('Post already reviewed')
+        }
+        const review = {
+            name: req.user.name,
+            img: req.user.img,
+            comment,
+            user:req.user._id
+        }
+        post.reviews.push(review)
+        post.numReviews = post.reviews.length
+        await post.save()
+        res.status(201).json({message: "Review Added"})
+    }else{
+        res.status(404)
+        throw new Error('Post not found')
+    }
+})
 
 
 
-export {getPosts, getPostById,updatePost,deletePost,createPost,getPostByUserId}
+
+
+
+export {getPosts, getPostById,updatePost,deletePost,createPost,getPostByUserId,createPostReview}

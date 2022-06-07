@@ -3,8 +3,13 @@ import mongoose from "mongoose";
 const reviewSchema = mongoose.Schema(
   {
     name: { type: String, required: true },
-    like: { type: Boolean},
     comment: { type: String, required: true },
+    img: {type:String,required: true, default: '/images/default-user.jpg' },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User'
+    },
   },
   {
     timestamps: true,
@@ -35,11 +40,12 @@ const postSchema = mongoose.Schema(
       required: true,
       default: 0
     },
-    views: {
+    numReviews: {
         type: Number,
         required: true,
         default: 0
     },
+    reviews: [reviewSchema],
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,

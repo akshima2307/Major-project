@@ -27,9 +27,18 @@ const UserListScreen = () => {
                     {users.map((user) => (
                         <tr className='user_list-data'>
                             <td>{user._id}</td>
-                            <td>{user.name}</td>
+                            <td style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center'
+                            }}><img src={user.img} alt="img" style={{
+                                width:'40px',
+                                height: '40px',
+                                borderRadius: '50%',
+                                marginRight: '1rem'
+                            }}/>{user.name}</td>
                             <td>description...</td>
-                            <td><button>Connect</button></td>
+                            <td><button style={{marginBottom: '1rem'}}>Connect</button></td>
                         </tr>
                     ))}
                 </table>

@@ -4,8 +4,7 @@ const posts = [
         img: '/images/img_1.jpg',
         description:  'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia placeat provident exercitationem explicabo eos, ducimus iusto vero animi mollitia excepturi, esse quo! Quisquam nostrum nam perferendis ab enim aliquam dolor?',
         category:'image',
-        likes:'39',
-        views:'105',
+        likes: 1,
         artist: {
             artistName:'John Doe',
             artistImg:'/images/user_1.jpg'
@@ -16,8 +15,7 @@ const posts = [
         img: '/images/img_2.jpg',
         description:  'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia placeat provident exercitationem explicabo eos, ducimus iusto vero animi mollitia excepturi, esse quo! Quisquam nostrum nam perferendis ab enim aliquam dolor?',
         category:'image',
-        likes:'79',
-        views:'235',
+        likes: 0,
         artist: {
             artistName:'Jane Doe',
             artistImg:'/images/user_1.jpg',
@@ -28,8 +26,7 @@ const posts = [
         img: '/images/img_3.jpg',
         description:  'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia placeat provident exercitationem explicabo eos, ducimus iusto vero animi mollitia excepturi, esse quo! Quisquam nostrum nam perferendis ab enim aliquam dolor?',
         category:'image',
-        likes:'89',
-        views:'115',
+        likes: 2,
         artist: {
             artistName:'James Smith',
             artistImg:'/images/user_1.jpg',
@@ -40,8 +37,7 @@ const posts = [
         img: '/images/img_4.jpg',
         description:  'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia placeat provident exercitationem explicabo eos, ducimus iusto vero animi mollitia excepturi, esse quo! Quisquam nostrum nam perferendis ab enim aliquam dolor?',
         category:'image',
-        likes:'457',
-        views:'12445',
+        likes: 1,
         artist: {
             artistName:'Herry Cooper',
             artistImg:'/images/user_1.jpg',
@@ -52,8 +48,7 @@ const posts = [
         img: '/images/img_5.jpg',
         description:  'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia placeat provident exercitationem explicabo eos, ducimus iusto vero animi mollitia excepturi, esse quo! Quisquam nostrum nam perferendis ab enim aliquam dolor?',
         category:'image',
-        likes:'78',
-        views:'457',
+        likes: 1,
         artist: {
             artistName:'Penny Howard',
             artistImg:'/images/user_1.jpg',
@@ -64,8 +59,7 @@ const posts = [
         img: '/images/img_6.jpg',
         description:  'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia placeat provident exercitationem explicabo eos, ducimus iusto vero animi mollitia excepturi, esse quo! Quisquam nostrum nam perferendis ab enim aliquam dolor?',
         category:'image',
-        likes:'78',
-        views:'195',
+        likes: 0,
         artist: {
             artistName:'Vandana Sharma',
             artistImg:'/images/user_1.jpg',
@@ -76,8 +70,7 @@ const posts = [
         img: '/images/img_7.jpg',
         description:  'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia placeat provident exercitationem explicabo eos, ducimus iusto vero animi mollitia excepturi, esse quo! Quisquam nostrum nam perferendis ab enim aliquam dolor?',
         category:'image',
-        likes:'3',
-        views:'10',
+        likes: 0,
         artist: {
             artistName:'Geetika Arora',
             artistImg:'/images/user_1.jpg',
