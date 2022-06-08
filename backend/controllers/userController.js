@@ -15,6 +15,11 @@ const authUser = asyncHandler(async(req,res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            img: user.img,
+            description: user.description,
+            isArtist: user.isArtist,
+            followers: user.followers,
+            following: user.following,
             token: generateToken(user._id),
         })
     }
@@ -28,7 +33,7 @@ const authUser = asyncHandler(async(req,res) => {
 //@route  POST /api/users
 //@acess  Public 
 const registerUser = asyncHandler(async(req,res) => {
-    const {name, email, password } = req.body
+    const {name, email, password, isArtist } = req.body
 
     const userExists = await User.findOne({email})
 
@@ -40,6 +45,7 @@ const registerUser = asyncHandler(async(req,res) => {
     const user = await User.create({
         name,
         email,
+        isArtist,
         password
     })
 
@@ -48,6 +54,10 @@ const registerUser = asyncHandler(async(req,res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            isArtist: user.isArtist,
+            description: user.description,
+            followers: user.followers,
+            following: user.following,
             img: '/images/default-user.jpg',
             token: generateToken(user._id),
         })
@@ -70,7 +80,9 @@ const getUserProfile = asyncHandler(async(req,res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
-            img: user.img
+            img: user.img,
+            isArtist: user.isArtist,
+            description: user.description
         })
 
     }else{
@@ -89,6 +101,7 @@ const updateUserProfile = asyncHandler(async(req,res) => {
         user.name = req.body.name || user.name
         user.email = req.body.email || user.email
         user.img = req.body.img || user.img
+        user.description = req.body.description || user.description
         if(req.body.password){
             user.password = req.body.password
         }
@@ -100,6 +113,7 @@ const updateUserProfile = asyncHandler(async(req,res) => {
             name: updatedUser.name,
             email: updatedUser.email,
             img: updatedUser.img,
+            description: updatedUser.description,
             token: generateToken(updatedUser._id),
         })
     }else{

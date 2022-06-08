@@ -6,12 +6,14 @@ import Message from '../components/Message';
 import {getUserDetails, updateUserProfile} from '../actions/userAction';
 import { createPost } from '../actions/postAction';
 import { POST_CREATE_RESET } from '../constants/postConstants';
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 
 
 const ProfileScreen = ({location,history}) => {
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
     const [img, setImg] = useState('')
+    const [description,setDescription] = useState("")
     const [uploading, setUploading] = useState(false)
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
@@ -35,12 +37,14 @@ const ProfileScreen = ({location,history}) => {
         if(!userInfo){
             history.push('/login')
         }else{
-            if(!user.name){
+            if(!user || !user.name || success){
+                dispatch({type: USER_UPDATE_PROFILE_RESET})
                 dispatch(getUserDetails('profile'))
             }else{
                 setName(user.name)
                 setEmail(user.email)
                 setImg(user.img)
+                setDescription(user.description)
             }
         }
         dispatch({type: POST_CREATE_RESET})
@@ -97,11 +101,13 @@ const ProfileScreen = ({location,history}) => {
     <section className="profile">
         <div className="profile_details">
             <div className='profile_header'>   
-                <h2>User Profile</h2>
-                <div>
-                    <Link to={`/userpost/${user._id}`}>Uploaded Post</Link>
-                    <button onClick={createPostHandler}>Create A Post</button>
-                </div>
+                <h2>Edit Your Profile</h2>
+                {userInfo && userInfo.isArtist === "Artist" && (
+                    <div>
+                        <Link to={`/userpost/${user._id}`}>Uploaded Post</Link>
+                        <button onClick={createPostHandler}><i class="fa fa-plus" aria-hidden="true"></i> Create A Post</button>
+                    </div>
+                ) }
             </div>
             <form className="profile_form" onSubmit={submitHandler}>
                 {error && <Message style={{"margin": "1rem 0"}}>{error}</Message>}
@@ -131,6 +137,11 @@ const ProfileScreen = ({location,history}) => {
                         <input type="email" id='email' placeholder="Email Id" value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
                 </div>
+                <div className="form_group">
+                        <label for="email">Description</label>
+                        {/* <EmailOutlinedIcon className="form_icon" /> */}
+                        <input type="text" id='description' placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
+                    </div>
                 <span style={{
                     'fontSize': '1.1rem',
                     'color':'var(--primary-color)',
@@ -151,7 +162,7 @@ const ProfileScreen = ({location,history}) => {
                 </div>
                 <div className="form_btns">
                     <div  style={{margin: 'auto'}}>
-                        <button type='submit' to="/homePage">Update</button>
+                        <button type='submit'>Update</button>
                     </div>
                 </div>
             </form>

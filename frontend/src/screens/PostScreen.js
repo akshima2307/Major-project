@@ -6,7 +6,6 @@ import {getUserDetails} from '../actions/userAction';
 import Message from '../components/Message';
 import { POST_CREATE_REVIEW_RESET } from '../constants/postConstants';
 
-
 const PostScreen = ({history,match}) => {
 
     const [comment,setComment] = useState('')

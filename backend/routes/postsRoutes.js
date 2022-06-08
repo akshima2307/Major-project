@@ -3,7 +3,6 @@ import {protect} from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 import {getPosts,getPostById,createPost, updatePost,getPostByUserId, deletePost, createPostReview} from '../controllers/postController.js'
-import Post from '../models/postModel.js';
 
  
 router.route('/').get(getPosts).post(protect,createPost)

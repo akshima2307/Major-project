@@ -25,8 +25,10 @@ const Header = () => {
                 <span>Artistry</span>
             </div>
             <div>
-                <div class="header_div">
+                <div class="header_div" style={{"display": "flex","alignItems":"center"}}>
                     {userInfo ? (
+                        <>
+                        <img src={userInfo.img} alt="user-img" style={{"width": "30px", "height": "30px", "marginRight": "0.5rem"}} />
                         <NavDropdown title={userInfo.name} id="username">
                             <div style={{
                                 "display": "flex",
@@ -35,7 +37,10 @@ const Header = () => {
                                 "background": "white",
                                 "padding": "0.6rem",
                                 "width": "8rem",
-                                "boxShadow": "0 5px 10px rgba(0,0,0,0.3)"
+                                "boxShadow": "0 5px 10px rgba(0,0,0,0.3)",
+                                // "position": "relative",
+                                // "zIndex":"200000"
+
                             }}>
                                 <NavDropdown.Item style={{
                                         "padding": "0.3rem 0",
@@ -43,7 +48,9 @@ const Header = () => {
                                         "marginLeft": '1rem'
                                     }}>
                                         <Link to="/profile">
-                                        <i class="fa fa-user" aria-hidden="true"></i>Profile
+                                        <i class="fa fa-user" style={{
+                                    "marginRight": "0.5rem"
+                                }}  aria-hidden="true"></i> Profile
                                         </Link>
                                 </NavDropdown.Item>
                                 <NavDropdown.Item style={{
@@ -51,17 +58,22 @@ const Header = () => {
                                         "cursor": "pointer",
                                         "marginLeft": '1rem'
                                     }}>
-                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i><Link to={'/like'}>Liked Post</Link>
+                                    <i class="fa fa-thumbs-up" style={{
+                                    "marginRight": "0.5rem"
+                                }}  aria-hidden="true"></i><Link to={'/like'}> Liked Post</Link>
                                 </NavDropdown.Item>
                                 <NavDropdown.Item onClick={logoutHandler} style={{
                                     "padding": "0.3rem 0",
                                     "cursor": "pointer",
                                     "marginLeft": '1rem'
                                 }}>
-                                <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
+                                <i class="fa fa-sign-out" style={{
+                                    "marginRight": "0.5rem"
+                                }} aria-hidden="true"></i> Logout
                                 </NavDropdown.Item>
                             </div>
                       </NavDropdown>
+                      </>
                     ): (
                         <div className='btn'>
                             <Link to={'/login'} className='login-btn'>Log-In</Link>

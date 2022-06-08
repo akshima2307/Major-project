@@ -13,6 +13,8 @@ import Signup from './components/Signup';
 import UserListScreen from './screens/UserListScreen';
 import PostEditScreen from './screens/PostEditScreen';
 import UserPostScreen from './screens/UserPostScreen';
+import UserProfileScreen from './screens/UserProfileScreen';
+import LandingPage from './screens/LandingPage';
 
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
     <Router>
       <Header />
       <NavBar />
+      <Route path="/" component={LandingPage} exact />
       <Route path="/search/:keyword" component={HomeScreen}  />
       <Route path="/home" component={HomeScreen} exact />
       <Route path="/post/:id" component={PostScreen} />
@@ -29,6 +32,7 @@ function App() {
       <Route path="/login" component={LogIn} />
       <Route path="/signup" component={Signup} />
       <Route path="/profile" component={ProfileScreeen} />
+      <Route path="/userProfile/:id" component={UserProfileScreen} />
       <Route path="/connects" component={UserListScreen} />
       <Route path='/user/post/:id/edit' component={PostEditScreen} />
       <Route path='/userpost/:id' component={UserPostScreen} />

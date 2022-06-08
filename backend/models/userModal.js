@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-
+const { ObjectId } = mongoose.Schema.Types;
 const userSchema = mongoose.Schema(
   {
     img:{
@@ -20,7 +20,25 @@ const userSchema = mongoose.Schema(
     password: {
       type: String,
       required: true,
-    }
+    },
+    isArtist: {
+      type: String,
+      required: true,
+      default: "User",
+    },
+    description: {
+      type: String,
+      required: true,
+      default: "description..."
+    },
+    followers:{
+      type: [{
+        type: ObjectId,
+        ref: 'User',
+      }]
+    },
+    following:[{type: ObjectId,ref:"User"}],
+
   },
   {
     timestamps: true,

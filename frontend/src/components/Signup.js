@@ -2,10 +2,12 @@ import React, {useState,useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import Message from './Message';
 import {register} from '../actions/userAction';
+import Select from 'react-select'
 
 const Signup = ({location,history}) => {
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
+    const [isArtist, setIsArtist] = useState('User')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [message, setMessage ] = useState(null)
@@ -30,9 +32,14 @@ const Signup = ({location,history}) => {
         if(password !== confirmPassword) {
             setMessage('Password do not match')
         }else{
-            dispatch(register(name,email,password))
+            dispatch(register(name,email,isArtist,password))
         }
     }
+
+    // const options = [
+    //     { value: 'User', label: 'User Account' },
+    //     { value: 'Artist', label: 'Artist Account' },
+    // ]
     
     return(
         <section className="form_container">
@@ -53,6 +60,14 @@ const Signup = ({location,history}) => {
                     <label for="email">Email Address</label>
                     {/* <EmailOutlinedIcon className="form_icon" /> */}
                     <input type="email" id='email' placeholder="Email Id" value={email} onChange={(e) => setEmail(e.target.value)} />
+                </div>
+                <div className="form_group">
+                    <label for="isArtist">Account</label>
+                    {/* <EmailOutlinedIcon className="form_icon" /> */}
+                    <select value={isArtist} onChange={(e) => {setIsArtist(e.target.value);}}>
+                        <option value={"User"}>User Account</option>
+                        <option value={"Artist"}>Artist Account</option>
+                    </select>
                 </div>
                 <div className="form_group">
                     <label for="password">Password</label>
